@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 #agenda,
 .notes {
   display: flex;
@@ -51,6 +55,10 @@
 .time-tick:hover::after {
   content: attr(data-time);
   background: powderblue;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 2px;
+  border-radius: 35%;
 }
 
 .note-detail {
