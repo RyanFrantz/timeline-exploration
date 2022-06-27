@@ -1,3 +1,4 @@
+#agenda,
 .notes {
   display: flex;
   flex-direction: column;
@@ -55,6 +56,11 @@
 .note-detail {
   margin: 2px;
   padding: 5px;
+}
+
+.agenda,
+.notes > .note:nth-child(even) {
+  background: lightgray;
 }
 
 .note-detail:hover {
