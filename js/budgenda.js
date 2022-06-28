@@ -26,6 +26,14 @@ function addMinutes(numMinutes, date = new Date()) {
   return new Date(date.setMinutes(date.getMinutes() + numMinutes));
 }
 
+function createAgendaItem(event) {
+  const agendaItem = document.createElement("div");
+  agendaItem.className = "agenda-item";
+  agendaItem.setAttribute("contentEditable", "true");
+  // TODO: Add a unique ID so we can keep agenda items sorted.
+  event.target.insertAdjacentElement('afterend', agendaItem);
+}
+
 function createAgenda() {
   const now = new Date();
   const main = document.querySelector("main");
@@ -46,7 +54,7 @@ function createAgenda() {
   for (let i = 0; i <= 30; i++) {
     const timeslot = document.createElement("span");
     timeslot.className = "time-tick";
-    timeslot.addEventListener("click", createAgenda);
+    timeslot.addEventListener("click", createAgendaItem);
     // NOTE: We need to pass a copy of now, else now's value is updated,
     // by reference, creating an almost Fibonacci-like increase in time values!
     const timeslotDatetime = addMinutes(i, new Date(now));

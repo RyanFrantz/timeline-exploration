@@ -11,6 +11,11 @@ button {
   margin-left: 10px;
 }
 
+.agenda-item {
+  border: 1px solid;
+  margin: 1px;
+}
+
 #meeting-title {
   margin-bottom: 5px;
 }
