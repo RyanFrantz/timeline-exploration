@@ -3,6 +3,16 @@ function prefixZero(num) {
     return num < 10 ? `0${num}` : num;
 }
 
+/*
+ *  Given a date, return milliseconds since the epoch.
+ * Sat Jul 17 2021 16:57:34 GMT-0400 (Eastern Daylight Time)
+ * -to-
+ *  1626555454000
+ */
+function epoch(date) {
+  return Date.parse(date);
+}
+
 // Return the time in HH:MM format.
 // If a Date argument is not present, finds the current date.
 function getTime(date = new Date()) {
@@ -17,22 +27,31 @@ function addMinutes(numMinutes, date = new Date()) {
 }
 
 function createAgenda() {
-  let body = document.querySelector("body");
-  let agenda = document.createElement("div");
+  const now = new Date();
+  const main = document.querySelector("main");
+  const agenda = document.createElement("div");
   agenda.id = "agenda"
+
+  const meetingTitle = document.createElement("input");
+  meetingTitle.id = "meeting-title";
+  meetingTitle.placeholder = "Meeting Title";
+  main.appendChild(meetingTitle);
+
   /* TODO: Consider adding a custom data-* attribute here for use when storing
    * the agenda as a whole.
    */
-  body.appendChild(agenda);
-  const now = new Date();  
+  main.appendChild(agenda);
+
   // Generate a 30-minute agenda, for now.
   for (let i = 0; i <= 30; i++) {
-    let timeslot = document.createElement("span");
+    const timeslot = document.createElement("span");
     timeslot.className = "time-tick";
+    timeslot.addEventListener("click", createAgenda);
     // NOTE: We need to pass a copy of now, else now's value is updated,
     // by reference, creating an almost Fibonacci-like increase in time values!
-    let time = getTime(addMinutes(i, new Date(now)));
-    timeslot.setAttribute("data-time", time);
+    const timeslotDatetime = addMinutes(i, new Date(now));
+    timeslot.setAttribute("data-time", getTime(timeslotDatetime));
+    timeslot.id = `timeslot_${epoch(timeslotDatetime)}`;
     agenda.appendChild(timeslot);
   }
 }
