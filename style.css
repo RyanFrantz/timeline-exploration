@@ -16,6 +16,12 @@ button {
   margin: 1px;
 }
 
+/* Give the clock time some wiggle room. */
+/* Found the correct selector by inspecting the DOM. */
+input[type=time i] {
+  width: 105px;
+}
+
 #meeting-title {
   margin-bottom: 5px;
 }
