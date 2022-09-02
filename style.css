@@ -13,7 +13,7 @@ button {
 
 .agenda-item {
   border: 1px solid;
-  margin: 1px;
+  margin-left: 5px;
 }
 
 /* Give the clock time some wiggle room. */
